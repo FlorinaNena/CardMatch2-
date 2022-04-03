@@ -1,24 +1,35 @@
+let cards = document.querySelectorAll(".card");
+const hpTrack = document.querySelector('.hp-track');
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
+let matchedCards = [];
+
+let intervalId = null;
+
+const numOfTries = 12;
+let numOfFailedFlips = 0;
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
     ready();
 }
 
-
-let cards = document.querySelectorAll(".card");
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
-let matchedCards = [];
-
 cards.forEach(card => card.addEventListener("click", flipCard));
 
 function ready() {
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
-
+    // debugger;
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
             overlay.classList.remove('visible');
+            if(intervalId) {
+              clearInterval(intervalId);
+              intervalId = null;
+            }
+            resetBoard();
+            resetGameState();
             setIntervalTimer();
         });
     });
@@ -28,7 +39,7 @@ const setIntervalTimer = () => {
     let timerText = document.getElementById("hp-remaining");
     let count = 100;
 
-    setInterval(() => {
+    intervalId = setInterval(() => {
         if (count === 0) return;
         count -= 1;
         timerText.textContent = count;
@@ -40,6 +51,7 @@ const setIntervalTimer = () => {
 }
 
 function flipCard() {
+    debugger;
     if (lockBoard) return;
     if (this === firstCard) return;
 
@@ -61,6 +73,10 @@ function flipCard() {
 
 
 function victory() {
+    if(intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
     const victory = document.getElementById("victory-text");
     victory.classList.add("visible");
 
@@ -73,11 +89,24 @@ function gameOver() {
 }
 
 function checkForMatch() {
+    debugger;
     let isMatch = firstCard.dataset.hero ===
         secondCard.dataset.hero;
+    let triedOut = false;
     if (isMatch) {
         matchedCards.push(firstCard);
         matchedCards.push(secondCard);
+    } else {
+      numOfFailedFlips += 1;
+      const trackScale = 1 - (numOfFailedFlips / numOfTries);
+      debugger;
+      hpTrack.style.transform = `scaleX(${trackScale})`;
+      triedOut = numOfFailedFlips === numOfTries;
+    }
+
+    if(triedOut) {
+      gameOver();
+      return;
     }
 
     isMatch ? disableCards() : unflipCards()
@@ -109,11 +138,17 @@ function resetBoard() {
 }
 
 
-
-(function shuffle() {
-    cards.forEach(card => {
-        let randomPos = Math.floor(Math.random() * 16);
-        card.style.order = randomPos;
-    });
-})();
-
+function resetGameState() {
+  resetBoard();
+  const gameContainer = document.querySelector('.game-container');
+  numOfFailedFlips = 0;
+  hpTrack.style.transform = 'scaleX(1)';
+  [...gameContainer.children].forEach((card) => {
+    card.classList.remove('flip');
+    card.classList.remove('matched');
+    matchedCards = [];
+    card.addEventListener('click', flipCard);
+    let randomPos = Math.floor(Math.random() * 16);
+    card.style.order = randomPos;
+  });
+}
