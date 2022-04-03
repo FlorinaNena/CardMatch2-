@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="/src/assets/images/icon.png">
+    <link rel="stylesheet" href="index.css">
+    <script src="./index.js" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Card Match Game</title>
+</head>
+
+<body>
+    <div class="text">
+        <h1 class="page-title">Card Match Game
+            <img class="icon" src="src/assets/images/icon.png" alt="">
+        </h1>
+    </div>
+    <!-- <audio autoplay id="musicdota" src="src/assets/sound/Dota.mp3" type="audio/mp3"></audio> -->
+
+    <div id="overlay" class="overlay-text visible">
+        Click to Start
+    </div>
+    <div id="victory-text" class="overlay-text ">
+        Victory
+        <span class="overlay-text-small">Click to play again</span>
+    </div>
+    <div id="game-over-text" class="overlay-text ">
+        Game Over
+        <span class="overlay-text-small">Click to play again</span>
+    </div>
+    <div class="game-info-container">
+        <div class="game-info">
+            <div class="hp-bar"><span class="hp-text">HP</span>
+                <span class="hp" id="hp-remaining">100</span>
+                <span class="first-hp">/ 100</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="card" data-hero="faceless">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="/src/assets/images/faceless.jpg" alt="">
+        </div>
+        <div class="card" data-hero="faceless">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="/src/assets/images/faceless.jpg" alt="">
+        </div>
+        <div class="card" data-hero="maiden">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/maiden.jpg" alt="">
+        </div>
+        <div class="card" data-hero="maiden">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/maiden.jpg" alt="">
+        </div>
+        <div class="card" data-hero="mirana">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/mirana.jpg" alt="">
+        </div>
+        <div class="card" data-hero="mirana">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/mirana.jpg" alt="">
+        </div>
+        <div class="card" data-hero="porc">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/porc.jpg" alt="">
+        </div>
+        <div class="card" data-hero="porc">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/porc.jpg" alt="">
+        </div>
+        <div class="card" data-hero="rubick">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/rubick.jpg" alt="">
+        </div>
+        <div class="card" data-hero="rubick">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/rubick.jpg" alt="">
+        </div>
+        <div class="card" data-hero="wind">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/wind.jpg" alt="">
+        </div>
+        <div class="card" data-hero="wind">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/wind.jpg" alt="">
+        </div>
+        <div class="card" data-hero="queen">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/queen.jpg" alt="">
+        </div>
+        <div class="card" data-hero="queen">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/queen.jpg" alt="">
+        </div>
+        <div class="card" data-hero="prophet">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/prohet.jpg" alt="prophet">
+        </div>
+        <div class="card" data-hero="prophet">
+            <img class="back-face" src="src/assets/images/aegiscard.png" alt="">
+            <img class="front-face" src="src/assets/images/prohet.jpg" alt="prophet">
+        </div>
+    </div>
+</body>
+
+</html>
